@@ -1,19 +1,19 @@
 steps:
 - id: build-app
   name: 'gcr.io/cloud-builders/docker'
-  args: ['build', '-t', 'gcr.io/$PROJECT_ID/gateway:$SHORT_SHA', '.']
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/gateway:1.0.0','-f', 'gateway/Dockerfile', '.']
 - id: push-image
   name: 'gcr.io/cloud-builders/docker'
-  args: ['push', 'gcr.io/$PROJECT_ID/gateway:$SHORT_SHA']
+  args: ['push', 'gcr.io/$PROJECT_ID/gateway:1.0.0']
 - id: deploy
   name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
   args:
   - 'run'
   - 'deploy'
-  - '$_SERVICE_NAME'
+  - 'gateway'
   - '--image'
-  - 'gcr.io/$PROJECT_ID/gateway:$SHORT_SHA'
+  - 'gcr.io/$PROJECT_ID/gateway:1.0.0'
   - '--set-env-vars'
   - >- 
     SERVICE1_HOST=$_SERVICE1_HOST,

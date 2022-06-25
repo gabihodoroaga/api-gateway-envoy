@@ -1,8 +1,9 @@
 package main
-/* 
+
+/*
 ====NOTICE====
 This code was copied form somewhere but I don't remember where.
-If anybody consider this code his, ping me and I will put the 
+If anybody consider this code his, ping me and I will put the
 author name and to copyright notice.
 */
 

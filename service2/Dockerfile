@@ -1,7 +1,7 @@
 FROM golang:1.17.11-alpine AS build
 WORKDIR /src
 COPY . .
-RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /src/bin/service2 -tags=jsoniter,nomsgpack .
+RUN CGO_ENABLED=0 GOOS=linux GOARCH=amd64 go build -o /src/bin/service2 -tags=jsoniter,nomsgpack ./service2
 
 FROM scratch AS bin
 WORKDIR /app

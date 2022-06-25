@@ -1,10 +1,10 @@
 package main
 
 import (
-	"net/http"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
 	ginSwagger "github.com/swaggo/gin-swagger"
+	"net/http"
 	// This is required in order to serve swagger file
 	_ "github.com/gabihodoroaga/api-gateway-envoy/service1/docs"
 )
@@ -32,6 +32,5 @@ func main() {
 // @Success      200      string  string
 // @Router       /service1/ping [get]
 func ping(c *gin.Context) {
-	c.String(http.StatusOK, "pong")
+	c.String(http.StatusOK, "pong from service 1")
 }
-
