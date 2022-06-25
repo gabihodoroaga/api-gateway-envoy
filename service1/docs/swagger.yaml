@@ -1,0 +1,18 @@
+basePath: /api/v1
+host: localhost:8080
+info:
+  contact: {}
+  description: This is a sample server
+  title: Service1 API
+  version: "1.0"
+paths:
+  /service1/ping:
+    get:
+      description: Gets packet statistics for all public keys
+      responses:
+        "200":
+          description: OK
+          schema:
+            type: string
+      summary: Get organization keys statistics
+swagger: "2.0"

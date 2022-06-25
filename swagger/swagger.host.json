@@ -1,0 +1,13 @@
+{
+    "swagger": "2.0",
+    "info": {
+      "description": "The full documentation to interact with the this API server",
+      "title": "Developer API",
+      "contact": {
+        "name": "API Support",
+        "url": "https://developer.exmple.com"
+      },
+      "version": "1.0"
+    },
+    "host": "SWAGGER_HOST_NAME"
+}

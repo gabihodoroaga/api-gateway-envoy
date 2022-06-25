@@ -1,0 +1,23 @@
+steps:
+- id: build-app
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/swagger:$SHORT_SHA', './swagger']
+- id: push-image
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/swagger:$SHORT_SHA']
+- id: deploy
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - '$_SERVICE_NAME'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/swagger:$SHORT_SHA'
+  - '--allow-unauthenticated'
+  - '--project'
+  - '$_PROJECT'
+  - '--region'
+  - '$_REGION'
+images:
+- 'gcr.io/$PROJECT_ID/swagger:$SHORT_SHA'

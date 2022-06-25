@@ -1,0 +1,45 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "description": "The full documentation to interact with the this API server",
+    "title": "Developer API",
+    "contact": {
+      "name": "API Support",
+      "url": "https://developer.exmple.com"
+    },
+    "version": "1.0"
+  },
+  "host": "SWAGGER_HOST_NAME",
+  "basePath": "/api/v1",
+  "paths": {
+    "/service1/ping": {
+      "get": {
+        "description": "Gets packet statistics for all public keys",
+        "summary": "Get organization keys statistics",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    },
+    "/service2/ping": {
+      "get": {
+        "description": "Gets packet statistics for all public keys",
+        "summary": "Get organization keys statistics",
+        "operationId": "Mixin1",
+        "responses": {
+          "200": {
+            "description": "OK",
+            "schema": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+}

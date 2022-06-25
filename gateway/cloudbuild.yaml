@@ -1,0 +1,32 @@
+steps:
+- id: build-app
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'gcr.io/$PROJECT_ID/gateway:$SHORT_SHA', '.']
+- id: push-image
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['push', 'gcr.io/$PROJECT_ID/gateway:$SHORT_SHA']
+- id: deploy
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+  entrypoint: gcloud
+  args:
+  - 'run'
+  - 'deploy'
+  - '$_SERVICE_NAME'
+  - '--image'
+  - 'gcr.io/$PROJECT_ID/gateway:$SHORT_SHA'
+  - '--set-env-vars'
+  - >- 
+    SERVICE1_HOST=$_SERVICE1_HOST,
+    SERVICE1_PORT=$_SERVICE1_PORT,
+    SERVICE1_SSL=$_SERVICE1_SSL,
+    SERVICE2_HOST=$_SERVICE2_HOST,
+    SERVICE2_PORT=$_SERVICE2_PORT,
+    SERVICE2_SSL=$_SERVICE2_SSL,
+    SWAGGER_HOST=$_SWAGGER_HOST,
+    SWAGGER_PORT=$_SWAGGER_PORT,
+    SWAGGER_SSL=$_SWAGGER_SSL
+  - '--allow-unauthenticated'
+  - '--project'
+  - '$_PROJECT'
+  - '--region'
+  - '$_REGION'
